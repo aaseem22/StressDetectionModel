@@ -34,8 +34,8 @@ def summarize(dataset):
 
 
 # function to train the Naive Bayes classifier
-def train_naive_bayes(train_data):
-    separated = separate_by_class(train_data)
+def train_naive_bayes(train_data,train_data2):
+    separated = separate_by_class(train_data,)
     summaries = {}
     for class_value, instances in separated.items():
         summaries[class_value] = summarize(instances)
@@ -55,7 +55,7 @@ def predict_naive_bayes(summaries, input_vector):
 
 # example usage
 train_data = [[1,2,0], [2,3,0], [3,3,0], [2,1,1], [3,2,1], [4,3,1]]
-summaries = train_naive_bayes(train_data)
+summaries = train_naive_bayes(train_data,train_data)
 input_vector = [2,2]
 class_prediction = predict_naive_bayes(summaries, input_vector)
 print('Input vector: {}, Predicted class: {}'.format(input_vector, class_prediction))

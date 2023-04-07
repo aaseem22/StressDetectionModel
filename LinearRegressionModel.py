@@ -17,7 +17,7 @@ def covariance(x, mean_x, y, mean_y):
         covariance += (x[i] - mean_x) * (y[i] - mean_y)
     return covariance / float(len(x) - 1)
 
-# function to calculate the coefficients of linear regression
+# functon to calculate the coefficients of linear regression
 def coefficients(train_x, train_y):
     mean_x, mean_y = mean(train_x), mean(train_y)
     b1 = covariance(train_x, mean_x, train_y, mean_y) / variance(train_x)
