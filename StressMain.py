@@ -11,7 +11,11 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
 import LinearRegressionModel
-from NBModel import predict_naive_bayes, train_naive_bayes
+
+from sklearn.preprocessing import LabelEncoder
+
+from NBModel import BernoulliNaiveBayes4, BernoulliNaiveBayes5
+from newModel import BernoulliNaiveBayes18
 
 data = pd.read_csv("venv/stress.csv")
 print(data.head())
@@ -71,7 +75,12 @@ data = cv.transform([user]).toarray()
 output = model.predict(data)
 
 
-model2= BernoulliNB()
-model2.fit(xtrain,ytrain)
+
+# model2 = BernoulliNB()
+# model2.fit( xtrain,ytrain)
+# output2 = model2.predict(data)
+
+model2 = BernoulliNaiveBayes18()
+model2.fit( xtrain,ytrain)
 output2 = model2.predict(data)
 print(output2)
