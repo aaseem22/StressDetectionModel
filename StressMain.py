@@ -14,7 +14,7 @@ from sklearn.naive_bayes import BernoulliNB
 from ComplementNaiveBayes import  ComplementNaiveBayes
 from LinearRegressionModel import  LinearRegression_
 from newLinearModel import LinearRegression11
-from newModel import BernoulliNaiveBayes18
+from BernoulliNaiveBayes import BernoulliNaiveBayes18
 
 data = pd.read_csv("venv/stress.csv")
 print(data.head())
@@ -79,14 +79,14 @@ model2 = BernoulliNaiveBayes18()
 model2.fit(xtrain, ytrain)
 output2 = model2.predict(data)
 print(output2)
-#
-#
+
 # # for linear regression
 # linearModel = LinearRegression11()
 # linearModel.fit(xtrain, ytrain)
 # output3 = linearModel.predict(data)
 # print(output3)
 
+# For Complement base classifier
 guassianNb = ComplementNaiveBayes()
 guassianNb.fit(xtrain,ytrain)
 output4= guassianNb.predict(data)
