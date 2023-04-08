@@ -4,19 +4,17 @@ import nltk
 import re
 from nltk.corpus import stopwords
 import string
-import matplotlib.pyplot as plt
 import wordcloud
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
+import LinearRegressionModel
+import demo
 
-from ComplementNaiveBayes import  ComplementNaiveBayes
-from LinearRegressionModel import  LinearRegression_
-from newLinearModel import LinearRegression11
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
+from ComplementNaiveBayes import ComplementNaiveBayes
 
-data = pd.read_csv("venv/stress.csv")
+data = pd.read_csv("Stress.csv")
 print(data.head())
 print(data.isnull().sum())
 
@@ -43,15 +41,15 @@ def clean(text):
 
 data["text"] = data["text"].apply(clean)
 
-
-text = " ".join(i for i in data.text)
-stopwords = set(STOPWORDS)
-wordcloud = WordCloud(stopwords=stopwords,
-                      background_color="white").generate(text)
-plt.figure( figsize=(15,10))
-plt.imshow(wordcloud, interpolation='bilinear')
-plt.axis("off")
-plt.show()
+#
+# text = " ".join(i for i in data.text)
+# stopwords = set(STOPWORDS)
+# wordcloud = WordCloud(stopwords=stopwords,
+#                       background_color="white").generate(text)
+# plt.figure( figsize=(15,10))
+# plt.imshow(wordcloud, interpolation='bilinear')
+# plt.axis("off")
+# plt.show()
 
 data["label"] = data["label"].map({0: "No Stress", 1: "Stress"})
 data = data[["text", "label"]]
@@ -69,25 +67,24 @@ xtrain, xtest, ytrain, ytest = train_test_split(X, y,
 model = BernoulliNB()
 model.fit(xtrain, ytrain)
 
-user = input("Enter a Text: ")
-data = cv.transform([user]).toarray()
-output = model.predict(data)
 
+def NbMod(txt):
+    data = cv.transform([txt]).toarray()
+    # output = model.predict(data)
 
-# For Naive base classifier
-model2 = BernoulliNaiveBayes18()
-model2.fit(xtrain, ytrain)
-output2 = model2.predict(data)
-print(output2)
+    # model2 = BernoulliNB()
+    # model2.fit( xtrain,ytrain)
+    # output2 = model2.predict(data)
 
-# # for linear regression
-# linearModel = LinearRegression11()
-# linearModel.fit(xtrain, ytrain)
-# output3 = linearModel.predict(data)
-# print(output3)
+    model2 = BernoulliNaiveBayes18()
+    model2.fit(xtrain, ytrain)
+    output2 = model2.predict(data)[0]
+    return output2
 
-# For Complement base classifier
-guassianNb = ComplementNaiveBayes()
-guassianNb.fit(xtrain,ytrain)
-output4= guassianNb.predict(data)
-print(output4)
+def NbMod2(txt1):
+    # For Complement base classifier
+    guassianNb = ComplementNaiveBayes()
+    guassianNb.fit(xtrain, ytrain)
+    output4 = guassianNb.predict(data)[0]
+    return output4
+
