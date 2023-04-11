@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
 import LinearRegressionModel
-import demo
+
 
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes
@@ -81,10 +81,11 @@ def NbMod(txt):
     output2 = model2.predict(data)[0]
     return output2
 
-def NbMod2(txt1):
+def NbMod2(txt):
+    data = cv.transform([txt]).toarray()
     # For Complement base classifier
-    guassianNb = ComplementNaiveBayes()
-    guassianNb.fit(xtrain, ytrain)
-    output4 = guassianNb.predict(data)[0]
+    model3 = ComplementNaiveBayes()
+    model3.fit(xtrain, ytrain)
+    output4 = model3.predict(data)[0]
     return output4
 
