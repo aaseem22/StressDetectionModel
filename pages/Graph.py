@@ -2,6 +2,8 @@ import time
 import numpy as np
 import streamlit as st
 from matplotlib import pyplot as plt
+import BernoulliNaiveBayes
+
 
 st.set_page_config(
     page_title="Accuracy Graphs",
@@ -33,3 +35,7 @@ init()
 for i in range(100):
     animate(i)
     time.sleep(0.1)
+
+scalex = [10,20,30,40,50,60,70,80,90,100]
+y = BernoulliNaiveBayes.precision.bernauligph
+plt.plot(scalex, y)

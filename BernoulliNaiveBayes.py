@@ -43,5 +43,6 @@ class BernoulliNaiveBayes18:
         y_pred = self.predict(X)
         true_positives = np.sum((y_pred == positive_class) & (y == positive_class))
         false_positives = np.sum((y_pred == positive_class) & (y != positive_class))
-        return true_positives / (true_positives + false_positives)
+        bernauligph = true_positives / (true_positives + false_positives)
+        return bernauligph
 
