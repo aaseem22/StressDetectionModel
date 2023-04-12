@@ -94,3 +94,6 @@ def precision(y_true, y_pred):
     fp = ((y_true == 0) & (y_pred == 1)).sum()
     precision = tp / (tp + fp)
     return precision
+
+
+
