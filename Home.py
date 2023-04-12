@@ -25,3 +25,7 @@ if st.button("Analyze"):
     st.title("Compliment Naive Bayes")
     output4 = NbMod2(user_input)
     st.write(output4)
+
+
+
+
