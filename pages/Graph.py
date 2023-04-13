@@ -2,8 +2,10 @@ import time
 import numpy as np
 import streamlit as st
 from matplotlib import pyplot as plt
-import BernoulliNaiveBayes
-
+from BernoulliNaiveBayes import *
+from ComplementNaiveBayes import precision
+from StressMain import ytest
+from Home import user_input
 
 st.set_page_config(
     page_title="Accuracy Graphs",
@@ -14,28 +16,7 @@ st.title("Accuracy Graphs")
 
 st.sidebar.header("Graphs")
 
-fig, ax = plt.subplots()
 
-max_x = 5
-max_rand = 10
-
-x = np.arange(0, max_x)
-ax.set_ylim(0, max_rand)
-line, = ax.plot(x, np.random.randint(0, max_rand, max_x))
-the_plot = st.pyplot(plt)
-
-def init():  # give a clean slate to start
-    line.set_ydata([np.nan] * len(x))
-
-def animate(i):  # update the y values (every 1000ms)
-    line.set_ydata(np.random.randint(0, max_rand, max_x))
-    the_plot.pyplot(plt)
-
-init()
-for i in range(100):
-    animate(i)
-    time.sleep(0.1)
-
-scalex = [10,20,30,40,50,60,70,80,90,100]
-y = BernoulliNaiveBayes.precision.bernauligph
+scalex = [10]
+y = precision(ytest, user_input)
 plt.plot(scalex, y)

@@ -2,17 +2,24 @@ import pandas as pd
 import numpy as np
 import nltk
 import re
+
+from nltk import accuracy, precision
 from nltk.corpus import stopwords
 import string
 import wordcloud
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
+# from sklearn.tree import DecisionTreeClassifier
+
 import LinearRegressionModel
 
 
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes
+from DecisionTree import DecisionTree
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
@@ -69,7 +76,8 @@ model.fit(xtrain, ytrain)
 
 
 def NbMod(txt):
-    data = cv.transform([txt]).toarray()
+
+    data1 = cv.transform([txt]).toarray()
     # output = model.predict(data)
 
     # model2 = BernoulliNB()
@@ -82,10 +90,23 @@ def NbMod(txt):
     return output2
 
 def NbMod2(txt):
-    data = cv.transform([txt]).toarray()
+    input(txt)
+    data1 = cv.transform(txt).toarray()
     # For Complement base classifier
     model3 = ComplementNaiveBayes()
     model3.fit(xtrain, ytrain)
-    output4 = model3.predict(data)[0]
+    output4 = model3.predict(data1)[0]
     return output4
+
+
+
+
+def DT(txt):
+    model = DecisionTree()
+    model.fit(xtrain, ytrain)
+    data1 = cv.transform([txt]).toarray()
+    output = model.predict(data1)
+    return output[0]
+
+
 
