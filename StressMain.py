@@ -20,6 +20,7 @@ import LinearRegressionModel
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes
 from DecisionTree import DecisionTree
+from LogisticRegression import LogisticRegression11
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
@@ -109,4 +110,10 @@ def DT(txt):
     return output[0]
 
 
+def LR(txt):
+    model = LogisticRegression11()
+    model.fit(xtrain, ytrain)
+    data1 = cv.transform([txt])
+    output = model.predict(data1)
+    return output[0]
 

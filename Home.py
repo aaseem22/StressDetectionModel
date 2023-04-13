@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 
 from ComplementNaiveBayes import *
 from DecisionTree import DecisionTree
-from StressMain import NbMod2, ytest, DT
+from StressMain import NbMod2, ytest, DT, LR
 
 st.set_page_config(
     page_title="Stress Detection",
@@ -34,8 +34,8 @@ def button():
 
         # acc1 = accuracy(user_input)
         # st.write(acc1)
-        st.title("Decision Tree")
-        output4 = DT(user_input)
+        st.title("Logistic  Regression")
+        output4 = LR(user_input)
         st.write(output4)
         st.write(accuracy(user_input, output4))
 
