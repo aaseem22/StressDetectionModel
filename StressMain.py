@@ -15,6 +15,10 @@ from sklearn.naive_bayes import BernoulliNB
 # from sklearn.tree import DecisionTreeClassifier
 
 import LinearRegressionModel
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+
 
 
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
@@ -112,6 +116,16 @@ def DT(txt):
 
 def LR(txt):
     model = LogisticRegression11()
+    model.fit(xtrain, ytrain)
+    data1 = cv.transform([txt])
+    output = model.predict(data1)
+    return output[0]
+
+
+
+
+def Logistic(txt):
+    model = LogisticRegression()
     model.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
     output = model.predict(data1)
