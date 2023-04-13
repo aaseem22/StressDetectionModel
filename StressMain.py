@@ -73,7 +73,7 @@ y = np.array(data["label"])
 cv = CountVectorizer()
 X = cv.fit_transform(x)
 xtrain, xtest, ytrain, ytest = train_test_split(X, y,
-                                                test_size=0.33,
+                                                test_size=0.13,
                                                 random_state=42)
 
 model = BernoulliNB()
@@ -90,7 +90,7 @@ def NbMod(txt):
     # output2 = model2.predict(data)
 
     model2 = BernoulliNaiveBayes18()
-    model2.fit(xtrain, ytrain)
+    model2.fit(xtest, ytest)
     output2 = model2.predict(data)[0]
     return output2
 
