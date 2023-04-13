@@ -1,10 +1,9 @@
-import easygui as easygui
 import streamlit as st
 from matplotlib import pyplot as plt
 
 from ComplementNaiveBayes import *
 from DecisionTree import DecisionTree
-from StressMain import NbMod2, ytest,  DT
+from StressMain import NbMod2, ytest, DT
 
 st.set_page_config(
     page_title="Stress Detection",
@@ -15,25 +14,51 @@ st.title("Stress Detection")
 
 st.sidebar.header('Home')
 
-user_input: str = st.text_area('Enter Sentence To Be Analyzed ', placeholder='Start Typing...')
+user_input: str = st.text_area('Enter Sentence To Be Analyzed ', placeholder='Start Typing...',value=".")
+
+xz = user_input
+
+
+
+
+
+def button():
+
+        # st.title("Bernoulli Naive Bayes")
+        # output2 = NbMod(user_input)
+        # st.write(output2)
+
+        st.title("Compliment Naive Bayes")
+        output4 = NbMod2([user_input])
+        st.write(output4)
+
+        # acc1 = accuracy(user_input)
+        # st.write(acc1)
+        st.title("Decision Tree")
+        output4 = DT(user_input)
+        st.write(output4)
+        st.write(accuracy(user_input, output4))
 
 if st.button("Analyze"):
-    # st.title("Bernoulli Naive Bayes")
-    # output2 = NbMod(user_input)
-    # st.write(output2)
-
-    st.title("Compliment Naive Bayes")
-    output4 = NbMod2([user_input])
-    st.write(output4)
-
-    # acc1 = accuracy(user_input)
-    # st.write(acc1)
-    st.title("Decision Tree")
-    output4 = DT(user_input)
-    st.write(output4)
-    st.write(accuracy(user_input,output4))
-
-
-
-
-
+    button()
+#
+# if st.button("Analyse"):
+#     # st.title("Bernoulli Naive Bayes")
+#     # output2 = NbMod(user_input)
+#     # st.write(output2)
+#
+#     st.title("Compliment Naive Bayes")
+#     output4 = NbMod2([user_input])
+#     st.write(output4)
+#
+#     # acc1 = accuracy(user_input)
+#     # st.write(acc1)
+#     st.title("Decision Tree")
+#     output4 = DT(user_input)
+#     st.write(output4)
+#     st.write(accuracy(user_input,output4))
+#
+#
+#
+#
+#

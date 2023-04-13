@@ -8,11 +8,11 @@ class DecisionTree:
     def __init__(self):
         self.tree = None
 
-    def fit(self, X_train, y_train):
-        self.tree = self.build_tree(X_train, y_train)
+    def fit(self, x_train, y_train):
+        self.tree = self.build_tree(x_train, y_train)
 
-    def predict(self, X_test):
-        predictions = [self.traverse_tree(x, self.tree) for x in X_test]
+    def predict(self, x_test):
+        predictions = [self.traverse_tree(x, self.tree) for x in x_test]
         return np.array(predictions)
 
     def traverse_tree(self, x, node):
@@ -59,7 +59,8 @@ class DecisionTree:
             return 0
         left_freqdist = FreqDist(y[left_indices])
         right_freqdist = FreqDist(y[right_indices])
-        child_entropy = ((len(y[left_indices]) / num_samples) * entropy(left_freqdist)
-                          + (len(y[right_indices]) / num_samples) * entropy(right_freqdist))
+        child_entropy = ((len(y[left_indices]) / num_samples) * entropy(left_freqdist.freqdist())
+                         + (len(y[right_indices]) / num_samples) * entropy(right_freqdist.freqdist()))
         ig = parent_entropy - child_entropy
         return ig
+

@@ -104,7 +104,7 @@ def NbMod2(txt):
 def DT(txt):
     model = DecisionTree()
     model.fit(xtrain, ytrain)
-    data1 = cv.transform([txt]).toarray()
+    data1 = cv.transform([txt])
     output = model.predict(data1)
     return output[0]
 
