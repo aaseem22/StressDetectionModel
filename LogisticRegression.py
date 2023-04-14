@@ -1,4 +1,5 @@
 import numpy as np
+import scipy
 
 
 class LogisticRegression11:
@@ -34,4 +35,10 @@ class LogisticRegression11:
         return np.round(y_pred)
 
     def _sigmoid(self, z):
+        if isinstance(z, scipy.sparse.csr_matrix):
+            z = z.toarray()
         return 1 / (1 + np.exp(-z))
+
+
+
+
