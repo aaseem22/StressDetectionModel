@@ -37,12 +37,12 @@ def button():
         st.title("Bernoulli Naive Bayes")
         output4 = NbMod(user_input)
         st.write(output4)
-        st.write(accuracy(user_input, output4))
+        #st.write(accuracy(user_input, output4))
 
         st.title("Logistic Regression")
         output4 = Logistic(user_input)
         st.write(output4)
-        st.write(accuracy(user_input, output4))
+        #st.write(accuracy(user_input, output4))
 
 
 if st.button("Analyze"):
