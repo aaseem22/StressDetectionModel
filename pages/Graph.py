@@ -1,11 +1,7 @@
-import time
-import numpy as np
+
 import streamlit as st
-from matplotlib import pyplot as plt
-from BernoulliNaiveBayes import *
-from ComplementNaiveBayes import precision
-from StressMain import ytest
 from Home import user_input
+from StressMain import LogisticAcc, DecisionTreeAcc
 
 st.set_page_config(
     page_title="Accuracy Graphs",
@@ -16,7 +12,17 @@ st.title("Accuracy Graphs")
 
 st.sidebar.header("Graphs")
 
+acc_lr = LogisticAcc(user_input)
+acc_dt = DecisionTreeAcc(user_input)
+models = ['Logistic Regression', 'Decision Tree', ]
+accuracies = [acc_lr, acc_dt]
+@st.cache_data
+import plotly.express as px
+df = px.data.gapminder().query("continent == 'Oceania'")
+fig = px.line(df, x='Models', y='Accuracy', color='country', symbol="country")
 
-scalex = [10]
-y = precision(ytest, user_input)
-plt.plot(scalex, y)
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
+with tab1:
+    st.plotly_chart(fig, theme="streamlit")
+with tab2:
+    st.plotly_chart(fig, theme=None)

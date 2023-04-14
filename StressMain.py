@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import nltk
 import re
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
 from nltk import accuracy, precision
 from nltk.corpus import stopwords
@@ -19,7 +21,7 @@ import LinearRegressionModel
 
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes
-from DecisionTree import DecisionTree
+
 from LogisticRegression import LogisticRegression11
 
 data = pd.read_csv("Stress.csv")
@@ -76,6 +78,11 @@ model = BernoulliNB()
 model.fit(xtrain, ytrain)
 
 
+def calculate_accuracy(model, xtest, ytest):
+    output1 = model.predict(xtest)
+    acc = accuracy_score(ytest, output1)
+    return acc
+
 def NbMod(txt):
 
     data1 = cv.transform([txt]).toarray()
@@ -100,20 +107,43 @@ def NbMod2(txt):
     return output4
 
 
+#Logistic Regression
+def LogisticAcc(txt):
+    model = LogisticRegression()
+    model.fit(xtrain, ytrain)
+    data1 = cv.transform([txt])
+    output = model.predict(data1)
+    accuracylr = model.predict(xtest)
+    lr_acc = accuracy_score(ytest, accuracylr)
+    return lr_acc
 
-
-def DT(txt):
-    model = DecisionTree()
+def Logistic(txt):
+    model = LogisticRegression()
     model.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
     output = model.predict(data1)
     return output[0]
 
+#Decision Tree
+def DecisionTree(txt):
+    modeldt = DecisionTreeClassifier()
+    modeldt.fit(xtrain, ytrain)
 
-def LR(txt):
-    model = LogisticRegression11()
-    model.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
     output = model.predict(data1)
+    accuracydt = model.predict(xtest)
+    dt_acc = accuracy_score(ytest, accuracydt)
+
     return output[0]
+
+def DecisionTreeAcc(txt):
+    modeldt = DecisionTreeClassifier()
+    modeldt.fit(xtrain, ytrain)
+
+    data1 = cv.transform([txt])
+    output = model.predict(data1)
+    accuracydt = model.predict(xtest)
+    dt_acc = accuracy_score(ytest, accuracydt)
+    return dt_acc
+
 
