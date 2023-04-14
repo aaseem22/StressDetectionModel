@@ -2,7 +2,7 @@ import streamlit as st
 from plotly.express import data, line
 
 from Home import user_input
-from StressMain import LogisticAcc, DecisionTreeAcc
+from StressMain import LogisticAcc, DecisionTreeAcc, ComplimentNaiveBayes11
 
 st.set_page_config(
     page_title="Accuracy Graphs",
@@ -15,8 +15,9 @@ st.sidebar.header("Graphs")
 
 acc_lr = LogisticAcc(user_input)
 acc_dt = DecisionTreeAcc(user_input)
-models = ['Logistic Regression', 'Decision Tree']
-accuracies = [acc_lr, acc_dt]
+acc_cn=ComplimentNaiveBayes11(user_input)
+models = ['Logistic Regression', 'Decision Tree','Compliment Naive Bayes']
+accuracies = [acc_lr, acc_dt,acc_lr]
 
 df = ({"Models": models, "Accuracy": accuracies})
 

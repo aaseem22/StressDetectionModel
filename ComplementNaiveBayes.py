@@ -2,7 +2,7 @@
 import numpy as np
 
 
-class ComplementNaiveBayes:
+class ComplementNaiveBayes1:
 
     def __init__(self, alpha=1.0):
         self.alpha = alpha

@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 from ComplementNaiveBayes import *
 
 from StressMain import NbMod2, ytest, DecisionTreeClassifier, xtrain, ytrain, DecisionTree, DecisionTreeAcc, Logistic, \
-    LogisticAcc
+    LogisticAcc, ComplimentNaiveBayes11
 
 
 st.set_page_config(
@@ -54,6 +54,10 @@ def button():
         st.title("Decision Tree")
         outputdt = DecisionTree(user_input)
         st.write(outputdt)
+
+        st.title("Compliment Naive Bayes")
+        outputt = ComplimentNaiveBayes11(user_input)
+        st.write(outputt)
 
 
 

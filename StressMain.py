@@ -11,8 +11,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
-from ComplementNaiveBayes import ComplementNaiveBayes
-
+from ComplementNaiveBayes import  ComplementNaiveBayes1
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
@@ -135,5 +134,17 @@ def DecisionTreeAcc(txt):
     accuracydt = model.predict(xtest)
     dt_acc = accuracy_score(ytest, accuracydt)
     return dt_acc
+
+def ComplimentNaiveBayes11(txt):
+    modeldt = ComplementNaiveBayes1()
+    modeldt.fit(xtrain, ytrain)
+
+    data1 = cv.transform([txt])
+    output = model.predict(data1)
+    # accuracydt = model.predict(xtest)
+    # dt_acc = accuracy_score(ytest, accuracydt)
+    # return dt_acc
+    return output[0]
+
 
 
