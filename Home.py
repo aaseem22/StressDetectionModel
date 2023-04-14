@@ -53,9 +53,8 @@ def button():
         # st.write(acc1)
         st.title("Decision Tree")
         outputdt = DecisionTree(user_input)
-        acc_dt = DecisionTreeAcc(user_input)
         st.write(outputdt)
-        st.write(acc_dt)
+
 
 
 

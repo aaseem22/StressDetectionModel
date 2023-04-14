@@ -1,5 +1,6 @@
-
 import streamlit as st
+from plotly.express import data, line
+
 from Home import user_input
 from StressMain import LogisticAcc, DecisionTreeAcc
 
@@ -14,12 +15,12 @@ st.sidebar.header("Graphs")
 
 acc_lr = LogisticAcc(user_input)
 acc_dt = DecisionTreeAcc(user_input)
-models = ['Logistic Regression', 'Decision Tree', ]
+models = ['Logistic Regression', 'Decision Tree']
 accuracies = [acc_lr, acc_dt]
-@st.cache_data
-import plotly.express as px
-df = px.data.gapminder().query("continent == 'Oceania'")
-fig = px.line(df, x='Models', y='Accuracy', color='country', symbol="country")
+
+df = ({"Models": models, "Accuracy": accuracies})
+
+fig = line(df, x="Models", y="Accuracy")
 
 tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 with tab1:

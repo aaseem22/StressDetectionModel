@@ -3,26 +3,16 @@ import numpy as np
 import nltk
 import re
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
-
-from nltk import accuracy, precision
 from nltk.corpus import stopwords
 import string
-import wordcloud
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import BernoulliNB
-# from sklearn.tree import DecisionTreeClassifier
-
-import LinearRegressionModel
-
-
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes
 
-from LogisticRegression import LogisticRegression11
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
