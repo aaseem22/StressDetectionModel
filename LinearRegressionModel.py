@@ -32,9 +32,4 @@ def linear_regression(train_x, train_y, test_x):
     return predicted_y
 
 
-# example usage
-train_x = np.array([1, 2, 3, 4, 5])
-train_y = np.array([2, 3, 4, 5, 6])
-test_x = np.array([6])
-predicted_y = linear_regression(train_x, train_y, test_x)
-print('Input x: {}, Predicted y: {}'.format(test_x[0], predicted_y[0]))
+

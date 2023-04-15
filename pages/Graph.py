@@ -1,27 +1,28 @@
 import streamlit as st
-from plotly.express import data, line
-
-from Home import user_input
-from StressMain import LogisticAcc, DecisionTreeAcc, ComplimentNaiveBayes11
-
 st.set_page_config(
     page_title="Accuracy Graphs",
     page_icon="📈",
 )
+from plotly.express import data, line
+
+from Home import user_input
+from StressMain import LogisticAcc, DecisionTreeAcc , CNBAccuracy
+
+
 
 st.title("Accuracy Graphs")
 
 st.sidebar.header("Graphs")
 
-acc_lr = LogisticAcc(user_input)
-acc_dt = DecisionTreeAcc(user_input)
-acc_cn=ComplimentNaiveBayes11(user_input)
+acc_lr = LogisticAcc(user_input)*100
+acc_dt = DecisionTreeAcc(user_input)*100
+acc_cn = CNBAccuracy(user_input)*100
 models = ['Logistic Regression', 'Decision Tree','Compliment Naive Bayes']
-accuracies = [acc_lr, acc_dt,acc_lr]
+accuracies = [acc_lr, acc_dt,acc_cn]
 
-df = ({"Models": models, "Accuracy": accuracies})
+df = ({"Model": models, "Accuracy in %": accuracies})
 
-fig = line(df, x="Models", y="Accuracy")
+fig = line(df, x="Model", y="Accuracy in %")
 
 tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
 with tab1:

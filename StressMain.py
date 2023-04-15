@@ -9,9 +9,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import BernoulliNB
-from BernoulliNaiveBayes import BernoulliNaiveBayes18
-from ComplementNaiveBayes import  ComplementNaiveBayes1
+from sklearn.utils import shuffle
+
+from ComplementNaiveBayes import ComplementNaiveBayes1
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
@@ -57,14 +57,13 @@ print(data.head())
 x = np.array(data["text"])
 y = np.array(data["label"])
 
+x, y = shuffle(x, y, random_state=42)
+
 cv = CountVectorizer()
 X = cv.fit_transform(x)
 xtrain, xtest, ytrain, ytest = train_test_split(X, y,
-                                                test_size=0.33,
+                                                test_size=0.30,
                                                 random_state=42)
-
-model = BernoulliNB()
-model.fit(xtrain, ytrain)
 
 
 def calculate_accuracy(model, xtest, ytest):
@@ -72,28 +71,6 @@ def calculate_accuracy(model, xtest, ytest):
     acc = accuracy_score(ytest, output1)
     return acc
 
-def NbMod(txt):
-
-    data1 = cv.transform([txt]).toarray()
-    # output = model.predict(data)
-
-    # model2 = BernoulliNB()
-    # model2.fit( xtrain,ytrain)
-    # output2 = model2.predict(data)
-
-    model2 = BernoulliNaiveBayes18()
-    model2.fit(xtrain, ytrain)
-    output2 = model2.predict(data)[0]
-    return output2
-
-def NbMod2(txt):
-    input(txt)
-    data1 = cv.transform(txt).toarray()
-    # For Complement base classifier
-    model3 = ComplementNaiveBayes()
-    model3.fit(xtrain, ytrain)
-    output4 = model3.predict(data1)[0]
-    return output4
 
 
 #Logistic Regression
@@ -117,12 +94,8 @@ def Logistic(txt):
 def DecisionTree(txt):
     modeldt = DecisionTreeClassifier()
     modeldt.fit(xtrain, ytrain)
-
     data1 = cv.transform([txt])
-    output = model.predict(data1)
-    accuracydt = model.predict(xtest)
-    dt_acc = accuracy_score(ytest, accuracydt)
-
+    output = modeldt.predict(data1)
     return output[0]
 
 def DecisionTreeAcc(txt):
@@ -130,21 +103,23 @@ def DecisionTreeAcc(txt):
     modeldt.fit(xtrain, ytrain)
 
     data1 = cv.transform([txt])
-    output = model.predict(data1)
-    accuracydt = model.predict(xtest)
+    accuracydt = modeldt.predict(xtest)
     dt_acc = accuracy_score(ytest, accuracydt)
     return dt_acc
 
 def ComplimentNaiveBayes11(txt):
-    modeldt = ComplementNaiveBayes1()
-    modeldt.fit(xtrain, ytrain)
-
+    modelcnb = ComplementNaiveBayes1()
+    modelcnb.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
-    output = model.predict(data1)
-    # accuracydt = model.predict(xtest)
-    # dt_acc = accuracy_score(ytest, accuracydt)
-    # return dt_acc
+    output = modelcnb.predict(data1.toarray())
     return output[0]
+def CNBAccuracy(txt):
+    modelcnb = ComplementNaiveBayes1()
+    modelcnb.fit(xtrain, ytrain)
+    data1 = cv.transform([txt])
+    accuracycnb = modelcnb.predict(xtest.toarray())
+    cnb_acc = accuracy_score(ytest, accuracycnb)
+    return cnb_acc
 
 
 
