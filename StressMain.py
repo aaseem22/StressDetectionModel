@@ -73,6 +73,7 @@ def calculate_accuracy(model, xtest, ytest):
 
 
 
+
 #Logistic Regression
 def LogisticAcc(txt):
     model = LogisticRegression()

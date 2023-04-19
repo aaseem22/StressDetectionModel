@@ -29,3 +29,4 @@ with tab1:
     st.plotly_chart(fig, theme="streamlit")
 with tab2:
     st.plotly_chart(fig, theme=None)
+
