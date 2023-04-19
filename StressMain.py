@@ -11,7 +11,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
+from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes1
+from LogisticRegression import Logistic1
 
 data = pd.read_csv("Stress.csv")
 print(data.head())
@@ -62,7 +64,7 @@ x, y = shuffle(x, y, random_state=42)
 cv = CountVectorizer()
 X = cv.fit_transform(x)
 xtrain, xtest, ytrain, ytest = train_test_split(X, y,
-                                                test_size=0.30,
+                                                test_size=0.33,
                                                 random_state=42)
 
 

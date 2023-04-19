@@ -3,10 +3,10 @@ st.set_page_config(
     page_title="Accuracy Graphs",
     page_icon="📈",
 )
-from plotly.express import data, line
 
 from Home import user_input
-from StressMain import LogisticAcc, DecisionTreeAcc , CNBAccuracy
+from plotly.express import data, line
+from StressMain import LogisticAcc, DecisionTreeAcc, CNBAccuracy
 
 
 

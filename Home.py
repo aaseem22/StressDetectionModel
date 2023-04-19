@@ -1,10 +1,12 @@
 import streamlit as st
-from StressMain import DecisionTree, ComplimentNaiveBayes11, Logistic
 
 st.set_page_config(
     page_title="Stress Detection",
     page_icon="😵"
 )
+
+from StressMain import DecisionTree, ComplimentNaiveBayes11, Logistic
+
 
 st.title("Stress Detection")
 
@@ -21,13 +23,13 @@ def button():
         output_lr = Logistic(user_input)
         st.write(output_lr)
 
-        st.title("Decision Tree")
+        st.title("Compliment Naive Bayes")
         output_dt = DecisionTree(user_input)
         st.write(output_dt)
 
-        st.title("Compliment Naive Bayes")
-        output_cnb = ComplimentNaiveBayes11(user_input)
-        st.write(output_cnb)
+        # st.title("Compliment Naive Bayes")
+        # output_cnb = ComplimentNaiveBayes11(user_input)
+        # st.write(output_cnb)
 
 
 
