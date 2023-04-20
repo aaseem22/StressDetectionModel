@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
+from sklearn.naive_bayes import BernoulliNB
 
 from BernoulliNaiveBayes import BernoulliNaiveBayes18
 from ComplementNaiveBayes import ComplementNaiveBayes1
@@ -111,13 +112,13 @@ def DecisionTreeAcc(txt):
     return dt_acc
 
 def ComplimentNaiveBayes11(txt):
-    modelcnb = ComplementNaiveBayes1()
+    modelcnb = BernoulliNB()
     modelcnb.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
     output = modelcnb.predict(data1.toarray())
     return output[0]
 def CNBAccuracy(txt):
-    modelcnb = ComplementNaiveBayes1()
+    modelcnb = BernoulliNB()
     modelcnb.fit(xtrain, ytrain)
     data1 = cv.transform([txt])
     accuracycnb = modelcnb.predict(xtest.toarray())

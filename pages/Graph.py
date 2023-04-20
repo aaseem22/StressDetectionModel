@@ -1,10 +1,13 @@
 import streamlit as st
+
+from Home import user_input
+
 st.set_page_config(
     page_title="Accuracy Graphs",
     page_icon="📈",
 )
 
-from Home import user_input
+
 from plotly.express import data, line
 from StressMain import LogisticAcc, DecisionTreeAcc, CNBAccuracy
 
