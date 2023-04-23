@@ -1,6 +1,8 @@
 # StressDetectionModel
 
 Tasks to be completed-
- Finalize Gui
+ Finalize Gui:Done
+ 
+ Finalize the project-
  
   
